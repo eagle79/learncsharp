@@ -9,7 +9,7 @@ namespace Playground
         public delegate void AccumulatorWasReset();
         public event AccumulatorWasReset AccumlatorWasReset;
 
-        public EventPublisher() {}
+        public EventPublisher() { }
 
         public void ResetAccumulator()
         {
@@ -57,7 +57,19 @@ namespace Playground
             {
                 OnMultipleOfFiveReached(this, EventArgs.Empty);
             }
+
+            if (isSum > short.MaxValue)
+            {
+                throw new MyException(isSum);
+            }
             return isSum;
         }
+    }
+
+    public class MyException : Exception
+    {
+        public MyException() { }
+
+        public MyException(int i) : base(string.Format("Getting a little big for your breeches: {0}", i)) { }
     }
 }
