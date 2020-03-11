@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstCSharpProject", "First
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{91F21F07-4383-4CFC-91A4-746135213D7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GinRummy", "GinRummy\GinRummy.csproj", "{CE43623D-6360-4A28-92C1-EC617C6C731B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,5 +21,9 @@ Global
 		{91F21F07-4383-4CFC-91A4-746135213D7F}.Debug|x86.Build.0 = Debug|x86
 		{91F21F07-4383-4CFC-91A4-746135213D7F}.Release|x86.ActiveCfg = Release|x86
 		{91F21F07-4383-4CFC-91A4-746135213D7F}.Release|x86.Build.0 = Release|x86
+		{CE43623D-6360-4A28-92C1-EC617C6C731B}.Debug|x86.ActiveCfg = Debug|x86
+		{CE43623D-6360-4A28-92C1-EC617C6C731B}.Debug|x86.Build.0 = Debug|x86
+		{CE43623D-6360-4A28-92C1-EC617C6C731B}.Release|x86.ActiveCfg = Release|x86
+		{CE43623D-6360-4A28-92C1-EC617C6C731B}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 EndGlobal

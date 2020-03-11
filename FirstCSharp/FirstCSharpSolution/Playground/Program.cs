@@ -5,6 +5,12 @@ class MainClass
 {
     static void Main(string[] args)
     {
+        Collections.doStuff();
+        //EventsAndStuff();
+    }
+
+    private static void EventsAndStuff()
+    {
         WrapHandler wrapHandler1 = new WrapHandler("wrapHandler1");
         WrapHandler wrapHandler2 = new WrapHandler("wrapHandler2");
 
@@ -35,7 +41,6 @@ class MainClass
         {
             Console.WriteLine($"\"Handled\" MyException: {e.Message}\n{e.StackTrace}");
         }
-
     }
 
     static void eventAdder_MultipleOfFiveReached(object sender, EventArgs args)
