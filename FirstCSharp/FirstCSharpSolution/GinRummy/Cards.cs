@@ -162,6 +162,18 @@ namespace Cards
         /// <param name="rank">The card's rank.</param>
         public Card(CardSuit suit, CardRank rank)
         {
+            if (!Enum.IsDefined(typeof(CardSuit), suit))
+            {
+                throw new ArgumentOutOfRangeException(
+                        nameof(suit), suit, "Invalid card suit.");
+            }
+
+            if (!Enum.IsDefined(typeof(CardRank), rank))
+            {
+                throw new ArgumentOutOfRangeException(
+                        nameof(rank), rank, "Invalid card rank.");
+            }
+
             Suit = suit;
             Rank = rank;
         }
@@ -171,6 +183,42 @@ namespace Cards
         /// </summary>
         /// <returns>A string that represents the current Card.</returns>
         public override string ToString() => ShortName;
+
+        /// <summary>
+        /// Determines whether the specified <see cref="object"/> is equal to 
+        /// the current <see cref="T:Cards.Card"/>.
+        /// </summary>
+        /// <param name="obj">
+        ///     The <see cref="object"/> to compare with the current
+        ///     <see cref="T:Cards.Card"/>.
+        /// </param>
+        /// <returns>
+        ///     <c>true</c> if the specified <see cref="object"/> is equal 
+        ///     to the current <see cref="T:Cards.Card"/>;
+        ///     otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Card))
+            {
+                return false;
+            }
+
+            Card c = (Card)obj;
+            return this.Suit == c.Suit && this.Rank == c.Rank;
+        }
+
+        /// <summary>
+        /// Serves as a hash function for a <see cref="T:Cards.Card"/> object.
+        /// </summary>
+        /// <returns>
+        ///     A hash code for this instance that is suitable for use in 
+        ///     hashing algorithms and data structures such as a hash table.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return Suit.GetHashCode() ^ Rank.GetHashCode();
+        }
 
         /// <summary>
         /// Defines the default comparison for a Card.
@@ -268,6 +316,15 @@ namespace Cards
             {
                 _cards.Shuffle();
             }
+        }
+
+        /// <summary>
+        /// Flips the orientation of the stack.
+        /// </summary>
+        public void Flip()
+        {
+            Orientation = (Orientation == CardStackOrientation.FaceDown) ?
+                    CardStackOrientation.FaceUp : CardStackOrientation.FaceDown;
         }
 
         /// <summary>
@@ -372,6 +429,21 @@ namespace Cards
         }
 
         /// <summary>
+        /// Sorts the card stack using the specified comparison. Built-in 
+        /// comparisons are available on the interface of <see cref="Card"/>.
+        /// The re-sort respects the orientation of the stack.
+        /// </summary>
+        /// <param name="comparison">The Comparison to use for the sort</param>
+        public void Sort(Comparison<Card> comparison)
+        {
+            _cards.Sort(comparison);
+            if (Orientation == CardStackOrientation.FaceUp)
+            {
+                _cards.Reverse();
+            }
+        }
+
+        /// <summary>
         /// Returns a new empty card stack with the specified orientation.
         /// </summary>
         /// <returns>The empty stack.</returns>
@@ -411,6 +483,37 @@ namespace Cards
         {
             CardStack stack = CardStack.GetSortedStandardDeck(orientation);
             stack.Shuffle();
+            return stack;
+        }
+
+        /// <summary>
+        /// Creates a new card stack in the specified orientation from the 
+        /// supplied list. The first card in the list will be the "top" card in
+        /// the new CardStack.
+        /// </summary>
+        /// <returns>A new card stack from the provided list.</returns>
+        /// <param name="cards">The cards to create the stack from</param>
+        /// <param name="orientation">
+        ///     The orientation of the new card stack
+        /// </param>
+        public static CardStack FromList(
+                List<Card> cards, CardStackOrientation orientation)
+        {
+            CardStack stack = CardStack.GetEmptyStack(orientation);
+
+            //we'll temporarily flip the stack so that we can add the cards
+            // in the correct order
+            stack.Flip();
+
+            //add the cards
+            foreach (Card card in cards)
+            {
+                stack.AddCard(card);
+            }
+
+            //flip it back and return it
+            stack.Flip();
+
             return stack;
         }
     }

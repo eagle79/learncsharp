@@ -3,10 +3,22 @@ using Playground;
 
 class MainClass
 {
+    enum MyEnum
+    {
+        value1 = 1,
+        value2 = 2
+    }
+
     static void Main(string[] args)
     {
         Collections.doStuff();
         //EventsAndStuff();
+
+
+        MyEnum e1 = MyEnum.value1;
+        e1 = (MyEnum)5;
+        Console.WriteLine($"e1 == {e1}");
+
     }
 
     private static void EventsAndStuff()

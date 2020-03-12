@@ -16,11 +16,22 @@ namespace GinRummy
             CardStack discards = CardStack.GetEmptyStack(
                     CardStackOrientation.FaceUp);
 
-            List<Card> drawnCards = deck.Draw(5);
+            List<Card> drawnCards = deck.Draw(10);
             Console.WriteLine("Drawn face down:");
             PrintCardList(drawnCards);
             Console.WriteLine("Deck status:");
             PrintCardStack(deck);
+            Console.WriteLine();
+
+            //Create a new stack from drawn cards, face up
+            CardStack drawnStack = 
+                    CardStack.FromList(drawnCards, CardStackOrientation.FaceUp);
+            Console.WriteLine("Stack from drawn cards:");
+            PrintCardStack(drawnStack);
+            drawnStack.Sort(Card.COMPARE_SUIT_RANK);
+            PrintCardStack(drawnStack);
+            drawnStack.Sort(Card.COMPARE_RANK_SUIT);
+            PrintCardStack(drawnStack);
             Console.WriteLine();
 
             //flip the stack over
@@ -44,6 +55,7 @@ namespace GinRummy
 
         private static void PrintCardStack(CardStack deck)
         {
+            Console.WriteLine($"STACK: {deck.Orientation} ({deck.Count}) =============");
             for (int i = 0; i<deck.Count; i++)
             {
                 Console.Write($"{deck.Contents[i]} ");
