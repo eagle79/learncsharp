@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{44A0877D-0946-4120-9FC6-A98A4A2633D9}</ProjectGuid>
+    <ProjectGuid>{D1771388-877E-4470-B8EF-80DFA9F529DD}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>UnitTests</RootNamespace>
-    <AssemblyName>UnitTests</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <RootNamespace>GinRummyTests</RootNamespace>
+    <AssemblyName>GinRummyTests</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,9 +38,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Cards\CardsLib.csproj">
-      <Project>{1F214D24-743B-49E7-9A8C-63C62C72F6F6}</Project>
-      <Name>CardsLib</Name>
+    <ProjectReference Include="..\GinRummy\GinRummy.csproj">
+      <Project>{CE43623D-6360-4A28-92C1-EC617C6C731B}</Project>
+      <Name>GinRummy</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
